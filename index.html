@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Ajar Interaktif IPA Kelas VIII - Sistem Ekskresi (Kulit)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon Edukatif -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fffbf5;
+            color: #1e293b;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Animasi Keringat di Lab Virtual */
+        @keyframes sweatRise {
+            0% { stroke-dashoffset: 60; }
+            100% { stroke-dashoffset: 0; }
+        }
+        .animate-sweat {
+            stroke-dasharray: 8 6;
+            animation: sweatRise 1.5s linear infinite;
+        }
+        .skin-hotspot {
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        .skin-hotspot:hover {
+            filter: brightness(1.06) drop-shadow(0 0 6px rgba(234, 88, 12, 0.55));
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-amber-50 via-white to-orange-50">
+
+    <!-- Header & Identitas Penyusun -->
+    <header class="bg-white shadow-md border-b border-orange-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <!-- Judul & Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-white shadow-lg">
+                        <i class="fa-solid fa-hand-sparkles text-2xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider bg-orange-100 text-orange-700 rounded-full">IPA Kelas VIII</span>
+                            <span class="px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider bg-sky-100 text-sky-800 rounded-full">Kurikulum Merdeka</span>
+                        </div>
+                        <h1 class="text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight mt-0.5">
+                            Sistem Ekskresi Manusia: <span class="text-orange-600">Kulit</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Identitas Penyusun -->
+                <div class="flex items-center bg-gradient-to-r from-orange-50 to-amber-50 px-4 py-2 rounded-xl border border-orange-200/80 shadow-sm">
+                    <div class="w-9 h-9 rounded-full bg-orange-600 text-white flex items-center justify-center font-bold text-sm mr-3 shrink-0">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <div class="text-xs sm:text-sm">
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Tim Penyusun</p>
+                        <p class="text-orange-700 font-extrabold flex items-center gap-1.5">
+                            <i class="fa-solid fa-school text-xs"></i> MGMP IPA MTs Kota Malang
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigasi Utama -->
+            <nav class="mt-4 flex overflow-x-auto pb-1 gap-2 no-scrollbar" aria-label="Menu Utama">
+                <button onclick="switchTab('pendahuluan')" id="btn-pendahuluan" class="nav-btn active flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all bg-orange-600 text-white shadow-md">
+                    <i class="fa-solid fa-house-chimney"></i> Pendahuluan
+                </button>
+                <button onclick="switchTab('materi')" id="btn-materi" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-orange-50 hover:text-orange-700 border border-slate-200">
+                    <i class="fa-solid fa-book-open"></i> Materi Interaktif
+                </button>
+                <button onclick="switchTab('lab')" id="btn-lab" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-orange-50 hover:text-orange-700 border border-slate-200">
+                    <i class="fa-solid fa-temperature-high"></i> Laboratorium Virtual
+                </button>
+                <button onclick="switchTab('lkpd')" id="btn-lkpd" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-orange-50 hover:text-orange-700 border border-slate-200">
+                    <i class="fa-solid fa-file-pen"></i> LKPD Digital
+                </button>
+                <button onclick="switchTab('quiz')" id="btn-quiz" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-orange-50 hover:text-orange-700 border border-slate-200">
+                    <i class="fa-solid fa-trophy"></i> Quiz Evaluasi
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ==================== 1. PENDAHULUAN ==================== -->
+        <section id="tab-pendahuluan" class="tab-content active space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-white/25 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                        Selamat Datang, Sobat Sains!
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold leading-tight mb-4">
+                        Mengapa Tubuh Kita Mengeluarkan Keringat Saat Berolahraga atau Kepanasan?
+                    </h2>
+                    <p class="text-orange-50 text-base sm:text-lg leading-relaxed mb-6">
+                        Selain melindungi organ dalam dari kuman dan benturan, <strong>Kulit</strong> adalah organ ekskresi terluas pada manusia! Kulit mengeluarkan keringat untuk membuang zat sisa metabolisme sekaligus menjaga suhu tubuh tetap stabil.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchTab('materi')" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            Mulai Belajar <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="switchTab('lab')" class="px-6 py-3 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl backdrop-blur-sm border border-white/40 transition flex items-center gap-2">
+                            <i class="fa-solid fa-flask"></i> Simulasi Keringat
+                        </button>
+                    </div>
+                </div>
+                <!-- Dekorasi SVG -->
+                <div class="hidden lg:block absolute right-10 bottom-2 opacity-20">
+                    <i class="fa-solid fa-sun text-[180px]"></i>
+                </div>
+            </div>
+
+            <!-- Grid Tujuan Pembelajaran & Pemantik -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tujuan Pembelajaran -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-800">Tujuan Pembelajaran</h3>
+                    </div>
+                    <ul class="space-y-3 text-slate-600 text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+                            <span>Mengidentifikasi struktur lapisan penyusun kulit manusia (Epidermis, Dermis, dan Hipodermis) beserta fungsinya.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+                            <span>Menjelaskan mekanisme pengeluaran keringat dan peran kulit dalam pengaturan suhu tubuh (termoregulasi).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+                            <span>Menganalisis berbagai gangguan/kelainan pada kulit serta upaya menjaga kesehatan kulit dalam kehidupan sehari-hari.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pertanyaan Pemantik & Apersepsi -->
+                <div class="bg-sky-50 rounded-3xl p-6 shadow-md border border-sky-200/80">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-800">Apersepsi & Pemantik</h3>
+                    </div>
+                    <p class="text-slate-700 text-sm sm:text-base mb-4 leading-relaxed">
+                        Pernahkah keringatmu tidak sengaja terjilat dan terasa <strong>asin</strong>? Mengapa keringat tidak terasa tawar seperti air putih biasa?
+                    </p>
+                    <div class="bg-white p-4 rounded-2xl border border-sky-200">
+                        <p class="text-xs font-bold uppercase text-sky-700 mb-2">Cek Prediksi Awalmu:</p>
+                        <div class="space-y-2">
+                            <button onclick="jawabPemantik(true)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-orange-50 hover:border-orange-300 text-sm font-medium transition">
+                                A. Karena keringat mengandung air, garam mineral (NaCl), dan sedikit urea dari darah.
+                            </button>
+                            <button onclick="jawabPemantik(false)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-orange-50 hover:border-orange-300 text-sm font-medium transition">
+                                B. Karena kulit menyerap garam langsung dari udara di sekitar kita.
+                            </button>
+                        </div>
+                        <div id="feedback-pemantik" class="hidden mt-3 p-3 rounded-xl text-sm font-semibold"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. MATERI INTERAKTIF ==================== -->
+        <section id="tab-materi" class="tab-content space-y-6">
+            <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-slate-800">Eksplorasi Struktur & Fungsi Kulit</h2>
+                        <p class="text-slate-500 text-sm">Klik bagian pada penampang kulit atau pilih topik di bawah untuk mempelajari detailnya.</p>
+                    </div>
+                    <!-- Sub-menu Materi -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="switchSubMateri('struktur')" id="sub-btn-struktur" class="sub-materi-btn px-4 py-2 rounded-xl text-sm font-bold bg-orange-600 text-white shadow">1. Struktur Kulit</button>
+                        <button onclick="switchSubMateri('keringat')" id="sub-btn-keringat" class="sub-materi-btn px-4 py-2 rounded-xl text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">2. Proses Keringat</button>
+                        <button onclick="switchSubMateri('gangguan')" id="sub-btn-gangguan" class="sub-materi-btn px-4 py-2 rounded-xl text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">3. Gangguan & Kesehatan</button>
+                    </div>
+                </div>
+
+                <!-- Sub-Materi 1: Struktur Kulit Interaktif -->
+                <div id="sub-materi-struktur" class="sub-materi-panel grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Ilustrasi SVG Interaktif Penampang Kulit -->
+                    <div class="lg:col-span-6 bg-gradient-to-b from-orange-50 to-amber-50 rounded-2xl p-6 border border-orange-200 flex flex-col items-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-700 mb-2">Klik Lapisan / Organ Kulit di Bawah Ini!</span>
+                        <svg viewBox="0 0 380 310" class="w-full max-w-md h-auto drop-shadow-md rounded-xl overflow-hidden">
+                            <!-- Lapisan 3: Hipodermis (Jaringan Lemak) -->
+                            <rect x="20" y="210" width="340" height="80" fill="#fde047" stroke="#ca8a04" stroke-width="2" class="skin-hotspot" onclick="showSkinInfo('hipodermis')"/>
+                            <!-- Bulatan Sel Lemak -->
+                            <circle cx="55" cy="245" r="16" fill="#fef08a" stroke="#eab308" stroke-width="1.5" pointer-events="none"/>
+                            <circle cx="95" cy="255" r="18" fill="#fef08a" stroke="#eab308" stroke-width="1.5" pointer-events="none"/>
+                            <circle cx="145" cy="245" r="16" fill="#fef08a" stroke="#eab308" stroke-width="1.5" pointer-events="none"/>
+                            <circle cx="235" cy="250" r="18" fill="#fef08a" stroke="#eab308" stroke-width="1.5" pointer-events="none"/>
+                            <circle cx="285" cy="245" r="16" fill="#fef08a" stroke="#eab308" stroke-width="1.5" pointer-events="none"/>
+                            <circle cx="325" cy="255" r="15" fill="#fef08a" stroke="#eab308" stroke-width="1.5" pointer-events="none"/>
+
+                            <!-- Lapisan 2: Dermis (Kulit Jangat) -->
+                            <rect x="20" y="85" width="340" height="125" fill="#fda4af" stroke="#e11d48" stroke-width="2" class="skin-hotspot" onclick="showSkinInfo('dermis')"/>
+
+                            <!-- Lapisan 1: Epidermis (Kulit Ari) -->
+                            <rect x="20" y="45" width="340" height="40" fill="#fdba74" stroke="#ea580c" stroke-width="2" class="skin-hotspot" onclick="showSkinInfo('epidermis')"/>
+
+                            <!-- Batang Rambut & Folikel -->
+                            <path d="M115,10 Q110,45 112,185" fill="none" stroke="#334155" stroke-width="5" stroke-linecap="round" pointer-events="none"/>
+                            <ellipse cx="112" cy="185" rx="9" ry="13" fill="#475569" pointer-events="none"/>
+                            <!-- Kelenjar Minyak (Sebasea) -->
+                            <path d="M114,125 Q138,118 135,138 Q125,148 114,138 Z" fill="#fef08a" stroke="#d97706" stroke-width="1.5" class="skin-hotspot" onclick="showSkinInfo('minyak')"/>
+
+                            <!-- Kelenjar Keringat (Glandula Sudorifera) -->
+                            <path d="M250,45 L250,155 Q235,175 255,180 Q272,185 252,195 Q238,192 252,170" fill="none" stroke="#0284c7" stroke-width="6" stroke-linecap="round" class="skin-hotspot" onclick="showSkinInfo('keringat')"/>
+                            <!-- Pori Keringat -->
+                            <ellipse cx="250" cy="45" rx="5" ry="2.5" fill="#0369a1" pointer-events="none"/>
+
+                            <!-- Pembuluh Darah di Dermis -->
+                            <path d="M20,198 L360,198" stroke="#dc2626" stroke-width="4" pointer-events="none"/>
+                            <path d="M20,204 L360,204" stroke="#2563eb" stroke-width="4" pointer-events="none"/>
+
+                            <!-- Pin Nomor Interaktif -->
+                            <g class="skin-hotspot" onclick="showSkinInfo('epidermis')">
+                                <circle cx="52" cy="65" r="12" fill="#1e293b"/>
+                                <text x="52" y="69" text-anchor="middle" fill="white" font-size="11" font-weight="bold">1</text>
+                            </g>
+                            <g class="skin-hotspot" onclick="showSkinInfo('dermis')">
+                                <circle cx="52" cy="145" r="12" fill="#1e293b"/>
+                                <text x="52" y="149" text-anchor="middle" fill="white" font-size="11" font-weight="bold">2</text>
+                            </g>
+                            <g class="skin-hotspot" onclick="showSkinInfo('hipodermis')">
+                                <circle cx="52" cy="255" r="12" fill="#1e293b"/>
+                                <text x="52" y="259" text-anchor="middle" fill="white" font-size="11" font-weight="bold">3</text>
+                            </g>
+                            <g class="skin-hotspot" onclick="showSkinInfo('keringat')">
+                                <circle cx="285" cy="145" r="12" fill="#0284c7"/>
+                                <text x="285" y="149" text-anchor="middle" fill="white" font-size="11" font-weight="bold">4</text>
+                            </g>
+                            <g class="skin-hotspot" onclick="showSkinInfo('minyak')">
+                                <circle cx="155" cy="128" r="12" fill="#d97706"/>
+                                <text x="155" y="132" text-anchor="middle" fill="white" font-size="11" font-weight="bold">5</text>
+                            </g>
+                        </svg>
+
+                        <div class="flex flex-wrap justify-center gap-2 mt-4">
+                            <button onclick="showSkinInfo('epidermis')" class="px-3 py-1.5 bg-white rounded-lg text-xs font-bold border border-orange-200 hover:bg-orange-600 hover:text-white transition">1. Epidermis</button>
+                            <button onclick="showSkinInfo('dermis')" class="px-3 py-1.5 bg-white rounded-lg text-xs font-bold border border-orange-200 hover:bg-orange-600 hover:text-white transition">2. Dermis</button>
+                            <button onclick="showSkinInfo('hipodermis')" class="px-3 py-1.5 bg-white rounded-lg text-xs font-bold border border-orange-200 hover:bg-orange-600 hover:text-white transition">3. Hipodermis</button>
+                            <button onclick="showSkinInfo('keringat')" class="px-3 py-1.5 bg-white rounded-lg text-xs font-bold border border-sky-200 hover:bg-sky-600 hover:text-white transition">4. Kelenjar Keringat</button>
+                            <button onclick="showSkinInfo('minyak')" class="px-3 py-1.5 bg-white rounded-lg text-xs font-bold border border-amber-200 hover:bg-amber-600 hover:text-white transition">5. Kelenjar Minyak</button>
+                        </div>
+                    </div>
+
+                    <!-- Panel Penjelasan Bagian Kulit -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div id="skin-detail-card" class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 transition-all">
+                            <span id="skin-badge" class="inline-block px-3 py-1 bg-orange-600 text-white text-xs font-bold rounded-full mb-2">Lapisan 1</span>
+                            <h3 id="skin-title" class="text-2xl font-extrabold text-slate-800 mb-2">Epidermis (Kulit Ari)</h3>
+                            <p id="skin-desc" class="text-slate-700 leading-relaxed mb-4">
+                                Epidermis adalah lapisan kulit paling luar yang tersusun atas sel-sel epitel pipih berlapis dan tidak memiliki pembuluh darah. Terdiri dari <strong>stratum korneum</strong> (lapisan tanduk berupa sel mati yang mudah mengelupas) dan <strong>stratum germinativum</strong> (lapisan yang aktif membelah dan mengandung pigmen <strong>melanin</strong> penentu warna kulit).
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-orange-100">
+                                <p class="text-xs font-bold text-orange-700 uppercase mb-1">Fungsi Utama:</p>
+                                <p id="skin-func" class="text-sm font-semibold text-slate-800">Melindungi tubuh dari masuknya bakteri, gesekan fisik, kehilangan air berlebih, dan radiasi sinar UV.</p>
+                            </div>
+                        </div>
+
+                        <!-- Info Fakta Sains -->
+                        <div class="bg-sky-50 border border-sky-200 rounded-2xl p-4 flex items-start gap-3">
+                            <i class="fa-solid fa-circle-info text-sky-600 text-xl mt-0.5"></i>
+                            <div class="text-sm text-sky-900">
+                                <strong>Tahukah Kamu?</strong> Kulit manusia dewasa memiliki luas permukaan sekitar <strong>1,5 hingga 2 meter persegi</strong> dan mengandung lebih dari <strong>2 hingga 4 juta kelenjar keringat</strong> yang tersebar di seluruh tubuh!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-Materi 2: Proses Pembentukan Keringat & Termoregulasi -->
+                <div id="sub-materi-keringat" class="sub-materi-panel hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Tahap 1 -->
+                        <div class="bg-gradient-to-b from-orange-50 to-white rounded-2xl p-6 border-2 border-orange-200 shadow-sm">
+                            <div class="w-12 h-12 rounded-2xl bg-orange-600 text-white font-extrabold text-xl flex items-center justify-center mb-4 shadow">1</div>
+                            <h3 class="text-xl font-extrabold text-slate-800 mb-1">Rangsangan Suhu / Aktivitas</h3>
+                            <p class="text-xs font-bold text-orange-700 uppercase mb-3"><i class="fa-solid fa-brain"></i> Pusat Kontrol: Hipotalamus</p>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Saat suhu lingkungan panas atau tubuh beraktivitas berat, suhu darah meningkat. <strong>Hipotalamus</strong> di otak mendeteksi kenaikan suhu ini dan mengirimkan sinyal saraf ke kulit.
+                            </p>
+                            <div class="bg-orange-100/80 p-3 rounded-xl text-xs font-bold text-orange-900">
+                                Respon: Pembuluh darah di dermis melebar (vasodilatasi)
+                            </div>
+                        </div>
+
+                        <!-- Tahap 2 -->
+                        <div class="bg-gradient-to-b from-sky-50 to-white rounded-2xl p-6 border-2 border-sky-200 shadow-sm">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-600 text-white font-extrabold text-xl flex items-center justify-center mb-4 shadow">2</div>
+                            <h3 class="text-xl font-extrabold text-slate-800 mb-1">Penyerapan Zat Sisa</h3>
+                            <p class="text-xs font-bold text-sky-700 uppercase mb-3"><i class="fa-solid fa-droplet"></i> Lokasi: Kelenjar Keringat</p>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Pangkal kelenjar keringat yang dikelilingi kapiler darah menyerap <strong>air, garam mineral (NaCl), dan sedikit urea</strong> dari darah untuk membentuk cairan keringat.
+                            </p>
+                            <div class="bg-sky-100/80 p-3 rounded-xl text-xs font-bold text-sky-900">
+                                Komposisi Keringat: ±99% Air, 1% Garam & Urea
+                            </div>
+                        </div>
+
+                        <!-- Tahap 3 -->
+                        <div class="bg-gradient-to-b from-emerald-50 to-white rounded-2xl p-6 border-2 border-emerald-200 shadow-sm">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-extrabold text-xl flex items-center justify-center mb-4 shadow">3</div>
+                            <h3 class="text-xl font-extrabold text-slate-800 mb-1">Penguapan & Pendinginan</h3>
+                            <p class="text-xs font-bold text-emerald-700 uppercase mb-3"><i class="fa-solid fa-wind"></i> Lokasi: Pori-pori Epidermis</p>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Keringat dialirkan melalui saluran keringat menuju pori-pori permukaan kulit. Saat keringat menguap, panas tubuh ikut terbawa sehingga <strong>suhu tubuh kembali normal</strong>.
+                            </p>
+                            <div class="bg-emerald-100/80 p-3 rounded-xl text-xs font-bold text-emerald-900">
+                                Hasil: Zat sisa terbuang & suhu tubuh stabil (±36,5°C - 37°C)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-Materi 3: Gangguan & Upaya Menjaga Kesehatan Kulit -->
+                <div id="sub-materi-gangguan" class="sub-materi-panel hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-rose-50/70 rounded-2xl p-6 border border-rose-200">
+                            <h3 class="text-lg font-extrabold text-rose-800 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Kelainan & Penyakit pada Kulit
+                            </h3>
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-white p-3.5 rounded-xl shadow-sm">
+                                    <p class="font-bold text-slate-800">1. Biang Keringat (Miliaria)</p>
+                                    <p class="text-slate-600">Tersumbatnya saluran/pori-pori kelenjar keringat oleh sel kulit mati atau debu sehingga menimbulkan bintik-bintik merah dan rasa gatal.</p>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-xl shadow-sm">
+                                    <p class="font-bold text-slate-800">2. Jerawat (Acne Vulgaris)</p>
+                                    <p class="text-slate-600">Penyumbatan dan peradangan pada <strong>kelenjar minyak (sebasea)</strong> akibat produksi minyak berlebih dan infeksi bakteri.</p>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-xl shadow-sm">
+                                    <p class="font-bold text-slate-800">3. Panu & Kurap (Infeksi Jamur)</p>
+                                    <p class="text-slate-600">Infeksi jamur pada lapisan epidermis akibat kulit lembap dan kurang menjaga kebersihan tubuh.</p>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-xl shadow-sm">
+                                    <p class="font-bold text-slate-800">4. Eksim (Dermatitis)</p>
+                                    <p class="text-slate-600">Peradangan kulit yang menyebabkan kulit kering, kemerahan, pecah-pecah, dan gatal akibat alergi atau iritasi.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-50/70 rounded-2xl p-6 border border-emerald-200">
+                            <h3 class="text-lg font-extrabold text-emerald-800 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-shield-heart"></i> Upaya Menjaga Kesehatan Kulit
+                            </h3>
+                            <ul class="space-y-3 text-sm text-slate-700">
+                                <li class="flex items-center gap-3 bg-white p-3.5 rounded-xl shadow-sm">
+                                    <i class="fa-solid fa-shower text-sky-500 text-xl"></i>
+                                    <span>Mandi secara teratur 2 kali sehari menggunakan sabun yang lembut untuk membersihkan kotoran dan minyak berlebih.</span>
+                                </li>
+                                <li class="flex items-center gap-3 bg-white p-3.5 rounded-xl shadow-sm">
+                                    <i class="fa-solid fa-shirt text-orange-500 text-xl"></i>
+                                    <span>Mengenakan pakaian yang bersih, longgar, dan mudah menyerap keringat (seperti bahan katun).</span>
+                                </li>
+                                <li class="flex items-center gap-3 bg-white p-3.5 rounded-xl shadow-sm">
+                                    <i class="fa-solid fa-bottle-water text-blue-500 text-xl"></i>
+                                    <span>Memperbanyak minum air putih serta mengonsumsi buah dan sayur yang kaya vitamin C dan E.</span>
+                                </li>
+                                <li class="flex items-center gap-3 bg-white p-3.5 rounded-xl shadow-sm">
+                                    <i class="fa-solid fa-sun-plant-wilt text-amber-500 text-xl"></i>
+                                    <span>Melindungi kulit dari paparan sinar matahari terik secara langsung menggunakan tabir surya atau pelindung.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 3. LABORATORIUM VIRTUAL ==================== -->
+        <section id="tab-lab" class="tab-content space-y-6">
+            <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase">Simulasi Interaktif</span>
+                        <h2 class="text-2xl font-extrabold text-slate-800 mt-1">Laboratorium Virtual: Termoregulasi & Produksi Keringat</h2>
+                        <p class="text-slate-500 text-sm">Atur kondisi suhu lingkungan dan aktivitas fisik untuk mengamati respon pembuluh darah serta kelenjar keringat!</p>
+                    </div>
+                </div>
+
+                <!-- Grid Lab Virtual -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Panel Kontrol Simulasi -->
+                    <div class="lg:col-span-4 bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-4">
+                        <h3 class="font-extrabold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-orange-600"></i> Pilih Kondisi Lingkungan & Tubuh:
+                        </h3>
+                        <div class="space-y-2.5">
+                            <button onclick="setSkinLab('dingin')" id="skin-lab-dingin" class="skin-lab-btn w-full text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 font-bold text-sm text-slate-800 transition">
+                                <div class="flex items-center justify-between">
+                                    <span>1. Cuaca Dingin (16°C) - Istirahat</span>
+                                    <i class="fa-solid fa-snowflake text-sky-500"></i>
+                                </div>
+                                <p class="text-xs font-normal text-slate-600 mt-1">Berada di ruang ber-AC atau dataran tinggi yang sejuk.</p>
+                            </button>
+
+                            <button onclick="setSkinLab('normal')" id="skin-lab-normal" class="skin-lab-btn w-full text-left p-3.5 rounded-xl border-2 border-orange-600 bg-orange-50 font-bold text-sm text-orange-950 transition">
+                                <div class="flex items-center justify-between">
+                                    <span>2. Suhu Ruang Normal (27°C)</span>
+                                    <i class="fa-solid fa-cloud-sun text-emerald-600"></i>
+                                </div>
+                                <p class="text-xs font-normal text-slate-600 mt-1">Aktivitas belajar santai di dalam kelas.</p>
+                            </button>
+
+                            <button onclick="setSkinLab('panas')" id="skin-lab-panas" class="skin-lab-btn w-full text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-amber-50 font-bold text-sm text-slate-800 transition">
+                                <div class="flex items-center justify-between">
+                                    <span>3. Terik Matahari (36°C)</span>
+                                    <i class="fa-solid fa-sun text-amber-500"></i>
+                                </div>
+                                <p class="text-xs font-normal text-slate-600 mt-1">Berjalan di luar ruangan pada siang hari yang terik.</p>
+                            </button>
+
+                            <button onclick="setSkinLab('olahraga')" id="skin-lab-olahraga" class="skin-lab-btn w-full text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-rose-50 font-bold text-sm text-slate-800 transition">
+                                <div class="flex items-center justify-between">
+                                    <span>4. Olahraga Berat (Lari Cepat)</span>
+                                    <i class="fa-solid fa-person-running text-rose-600"></i>
+                                </div>
+                                <p class="text-xs font-normal text-slate-600 mt-1">Metabolisme otot menghasilkan panas tubuh sangat tinggi.</p>
+                            </button>
+                        </div>
+
+                        <!-- Indikator Meteran -->
+                        <div class="pt-3 border-t border-slate-200 space-y-2">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span class="text-slate-600">Volume Keringat:</span>
+                                <span id="sweat-rate-text" class="text-orange-600">Sedang (Normal)</span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                                <div id="sweat-bar" class="bg-orange-500 h-2.5 rounded-full transition-all duration-500" style="width: 35%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visualisasi Penampang Dermis Dinamis -->
+                    <div class="lg:col-span-8 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 text-white flex flex-col justify-between">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <h4 class="font-bold text-amber-300 flex items-center gap-2">
+                                <i class="fa-solid fa-microscope"></i> Monitor Respon Kulit & Hipotalamus
+                            </h4>
+                            <span id="skin-lab-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                                Kondisi: Normal (27°C)
+                            </span>
+                        </div>
+
+                        <!-- Area Visual SVG Simulasi Kulit -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center my-2">
+                            <div class="md:col-span-2 bg-slate-800/90 rounded-xl p-4 border border-slate-700">
+                                <svg viewBox="0 0 380 210" class="w-full h-auto">
+                                    <!-- Butiran Keringat di Permukaan -->
+                                    <g id="sweat-drops" opacity="0.4">
+                                        <circle cx="190" cy="24" r="4" fill="#38bdf8"/>
+                                        <circle cx="215" cy="26" r="3" fill="#38bdf8"/>
+                                        <circle cx="165" cy="26" r="3" fill="#38bdf8"/>
+                                    </g>
+
+                                    <!-- Epidermis -->
+                                    <rect x="20" y="35" width="340" height="32" rx="4" fill="#fdba74"/>
+                                    <text x="35" y="55" fill="#7c2d12" font-size="11" font-weight="bold">Epidermis & Pori</text>
+
+                                    <!-- Dermis -->
+                                    <rect x="20" y="67" width="340" height="125" rx="4" fill="#fda4af"/>
+                                    <text x="35" y="90" fill="#881337" font-size="11" font-weight="bold">Lapisan Dermis</text>
+
+                                    <!-- Kelenjar Keringat -->
+                                    <path d="M190,35 L190,130 Q172,150 195,158 Q215,165 190,175 Q175,170 192,145" fill="none" stroke="#0284c7" stroke-width="8" stroke-linecap="round"/>
+                                    <!-- Aliran Keringat Naik -->
+                                    <path id="sweat-flow-anim" d="M190,165 L190,35" fill="none" stroke="#e0f2fe" stroke-width="3" class="animate-sweat"/>
+                                    <text x="225" y="135" fill="#0369a1" font-size="10" font-weight="bold">Kelenjar Keringat</text>
+
+                                    <!-- Pembuluh Darah Kapiler (Diameter berubah sesuai suhu) -->
+                                    <line id="blood-vessel-sim" x1="20" y1="180" x2="360" y2="180" stroke="#dc2626" stroke-width="6" class="transition-all duration-500"/>
+                                    <text x="35" y="170" fill="#7f1d1d" font-size="10" font-weight="bold">Pembuluh Darah Dermis</text>
+                                </svg>
+                            </div>
+
+                            <!-- Panel Data Fisiologis -->
+                            <div class="bg-slate-800/90 rounded-xl p-4 border border-slate-700 space-y-3">
+                                <div>
+                                    <p class="text-[11px] uppercase text-slate-400 font-bold">Pembuluh Darah:</p>
+                                    <p id="vessel-status" class="text-sm font-extrabold text-amber-300">Diameter Normal</p>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] uppercase text-slate-400 font-bold">Produksi Urine:</p>
+                                    <p id="urine-relation" class="text-sm font-extrabold text-sky-300">Seimbang</p>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] uppercase text-slate-400 font-bold">Suhu Inti Tubuh:</p>
+                                    <p id="body-temp-val" class="text-sm font-extrabold text-emerald-400">36,8 °C (Stabil)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Penjelasan Analisis Lab -->
+                        <div class="bg-slate-950/60 rounded-xl p-4 border border-slate-700 mt-2">
+                            <p class="text-xs font-bold uppercase text-amber-400 mb-1">Analisis Fisiologis:</p>
+                            <p id="skin-lab-explanation" class="text-sm text-slate-200 leading-relaxed">
+                                Pada suhu ruang 27°C, pembuluh darah dermis berada dalam ukuran normal dan kelenjar keringat memproduksi keringat dalam jumlah sedikit untuk menjaga keseimbangan cairan tubuh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 4. LKPD DIGITAL ==================== -->
+        <section id="tab-lkpd" class="tab-content space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-100">
+                <div class="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-bold uppercase">Lembar Kerja Peserta Didik</span>
+                        <h2 class="text-2xl font-extrabold text-slate-800 mt-1">LKPD: Struktur Kulit & Mekanisme Ekskresi Keringat</h2>
+                    </div>
+                    <div class="text-xs text-slate-500 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
+                        Penyusun: <strong class="text-orange-700">MGMP IPA MTs Kota Malang</strong>
+                    </div>
+                </div>
+
+                <!-- Identitas Siswa -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-orange-50/70 p-4 rounded-2xl border border-orange-100 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap Siswa / Kelompok:</label>
+                        <input type="text" id="lkpd-nama" placeholder="Contoh: Aisyah Putri / Kelompok 2" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kelas:</label>
+                        <input type="text" id="lkpd-kelas" placeholder="Contoh: VIII - B" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm bg-white">
+                    </div>
+                </div>
+
+                <!-- Aktivitas 1: Melengkapi Tabel Lapisan Kulit -->
+                <div class="space-y-4 mb-8">
+                    <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-orange-600 text-white text-sm flex items-center justify-center">A</span>
+                        Lengkapi Tabel Struktur Lapisan Kulit Manusia
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left border-collapse rounded-xl overflow-hidden shadow-sm">
+                            <thead class="bg-orange-600 text-white">
+                                <tr>
+                                    <th class="p-3">Urutan Lapisan</th>
+                                    <th class="p-3">Nama Lapisan Kulit</th>
+                                    <th class="p-3">Struktur Khas / Fungsi Utama</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-slate-50">
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-800">1. Lapisan Terluar</td>
+                                    <td class="p-3">
+                                        <select id="lkpd-l1-nama" class="w-full p-2 rounded-lg border border-slate-300 bg-white">
+                                            <option value="">-- Pilih Lapisan --</option>
+                                            <option value="Epidermis">Epidermis (Kulit Ari)</option>
+                                            <option value="Dermis">Dermis (Kulit Jangat)</option>
+                                            <option value="Hipodermis">Hipodermis (Subkutan)</option>
+                                        </select>
+                                    </td>
+                                    <td class="p-3">
+                                        <select id="lkpd-l1-fungsi" class="w-full p-2 rounded-lg border border-slate-300 bg-white">
+                                            <option value="">-- Pilih Struktur/Fungsi --</option>
+                                            <option value="Melanin">Mengandung pigmen melanin & lapisan tanduk pelindung</option>
+                                            <option value="Kelenjar">Terdapat kelenjar keringat, kelenjar minyak, & pembuluh darah</option>
+                                            <option value="Lemak">Mengandung jaringan lemak (adiposa) sebagai cadangan energi & penahan panas</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-800">2. Lapisan Tengah</td>
+                                    <td class="p-3">
+                                        <select id="lkpd-l2-nama" class="w-full p-2 rounded-lg border border-slate-300 bg-white">
+                                            <option value="">-- Pilih Lapisan --</option>
+                                            <option value="Epidermis">Epidermis (Kulit Ari)</option>
+                                            <option value="Dermis">Dermis (Kulit Jangat)</option>
+                                            <option value="Hipodermis">Hipodermis (Subkutan)</option>
+                                        </select>
+                                    </td>
+                                    <td class="p-3">
+                                        <select id="lkpd-l2-fungsi" class="w-full p-2 rounded-lg border border-slate-300 bg-white">
+                                            <option value="">-- Pilih Struktur/Fungsi --</option>
+                                            <option value="Melanin">Mengandung pigmen melanin & lapisan tanduk pelindung</option>
+                                            <option value="Kelenjar">Terdapat kelenjar keringat, kelenjar minyak, & pembuluh darah</option>
+                                            <option value="Lemak">Mengandung jaringan lemak (adiposa) sebagai cadangan energi & penahan panas</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-800">3. Lapisan Terdalam</td>
+                                    <td class="p-3">
+                                        <select id="lkpd-l3-nama" class="w-full p-2 rounded-lg border border-slate-300 bg-white">
+                                            <option value="">-- Pilih Lapisan --</option>
+                                            <option value="Epidermis">Epidermis (Kulit Ari)</option>
+                                            <option value="Dermis">Dermis (Kulit Jangat)</option>
+                                            <option value="Hipodermis">Hipodermis (Subkutan)</option>
+                                        </select>
+                                    </td>
+                                    <td class="p-3">
+                                        <select id="lkpd-l3-fungsi" class="w-full p-2 rounded-lg border border-slate-300 bg-white">
+                                            <option value="">-- Pilih Struktur/Fungsi --</option>
+                                            <option value="Melanin">Mengandung pigmen melanin & lapisan tanduk pelindung</option>
+                                            <option value="Kelenjar">Terdapat kelenjar keringat, kelenjar minyak, & pembuluh darah</option>
+                                            <option value="Lemak">Mengandung jaringan lemak (adiposa) sebagai cadangan energi & penahan panas</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Aktivitas 2: Studi Kasus Analisis -->
+                <div class="space-y-4 mb-6">
+                    <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-orange-600 text-white text-sm flex items-center justify-center">B</span>
+                        Analisis Hubungan Kulit dan Ginjal
+                    </h3>
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 text-sm text-slate-700">
+                        <strong>Studi Kasus:</strong> Andi berolahraga lari maraton di siang hari yang panas sehingga mengeluarkan sangat banyak keringat, namun ia jarang buang air kecil. Sebaliknya, saat berada di Malang yang bersuhu dingin di malam hari, Andi jarang berkeringat namun menjadi lebih sering buang air kecil. Jelaskan mengapa hal tersebut dapat terjadi!
+                    </div>
+                    <textarea id="lkpd-analisis" rows="3" placeholder="Tuliskan jawaban analisismu di sini..." class="w-full p-4 rounded-2xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"></textarea>
+                </div>
+
+                <!-- Tombol Aksi LKPD -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="periksaLKPD()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-check-double"></i> Periksa & Simpan LKPD
+                    </button>
+                    <button onclick="resetLKPD()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl transition">
+                        Reset Isian
+                    </button>
+                </div>
+
+                <!-- Hasil Feedback LKPD -->
+                <div id="lkpd-result" class="hidden mt-6 p-5 rounded-2xl border"></div>
+            </div>
+        </section>
+
+        <!-- ==================== 5. QUIZ EVALUASI ==================== -->
+        <section id="tab-quiz" class="tab-content space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-100 max-w-3xl mx-auto">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase">Uji Pemahaman</span>
+                        <h2 class="text-2xl font-extrabold text-slate-800 mt-1">Quiz Interaktif Sistem Ekskresi (Kulit)</h2>
+                    </div>
+                    <div id="quiz-progress-badge" class="px-4 py-2 bg-orange-100 text-orange-800 font-extrabold rounded-xl text-sm">
+                        Soal 1 / 5
+                    </div>
+                </div>
+
+                <!-- Kontainer Soal Quiz -->
+                <div id="quiz-container">
+                    <p id="quiz-question" class="text-lg font-bold text-slate-800 mb-5 leading-relaxed">
+                        Memuat soal...
+                    </p>
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- Opsi jawaban di-render via JS -->
+                    </div>
+                    <div id="quiz-feedback" class="hidden mt-4 p-4 rounded-xl text-sm font-semibold"></div>
+                    <div class="mt-6 flex justify-end">
+                        <button id="quiz-next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl shadow transition flex items-center gap-2">
+                            Soal Berikutnya <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kontainer Skor Akhir -->
+                <div id="quiz-score-container" class="hidden text-center py-6 space-y-4">
+                    <div class="w-20 h-20 rounded-full bg-amber-100 text-amber-500 flex items-center justify-center text-4xl mx-auto shadow-inner">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-slate-800">Quiz Selesai!</h3>
+                    <p class="text-slate-600">Skor Akhir Kamu:</p>
+                    <div id="quiz-final-score" class="text-5xl font-black text-orange-600">100</div>
+                    <p id="quiz-final-msg" class="text-sm font-medium text-slate-700 max-w-md mx-auto"></p>
+                    <div class="pt-4">
+                        <button onclick="restartQuiz()" class="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl shadow-md transition">
+                            <i class="fa-solid fa-rotate-right mr-2"></i> Ulangi Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <p>© 2026 Materi Ajar Interaktif IPA Kelas VIII — <strong>Sistem Ekskresi (Kulit)</strong></p>
+            <p class="font-semibold text-slate-700">Disusun oleh: <span class="text-orange-700 font-bold">MGMP IPA MTs Kota Malang</span></p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT INTERAKTIF ==================== -->
+    <script>
+        // 1. Navigasi Tab Utama
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-orange-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+
+            document.getElementById('tab-' + tabId).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            activeBtn.classList.add('bg-orange-600', 'text-white', 'shadow-md');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 2. Interaksi Pertanyaan Pemantik
+        function jawabPemantik(isCorrect) {
+            const fb = document.getElementById('feedback-pemantik');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800');
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                fb.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Tepat sekali! Kelenjar keringat menyerap air, garam mineral (NaCl), dan sedikit urea dari kapiler darah sehingga keringat terasa asin.';
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800');
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark mr-1"></i> Kurang tepat. Garam dalam keringat berasal dari darah yang disaring oleh kelenjar keringat di lapisan dermis. Coba pilihan A!';
+            }
+        }
+
+        // 3. Sub-Menu Materi
+        function switchSubMateri(subId) {
+            document.querySelectorAll('.sub-materi-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.sub-materi-btn').forEach(b => {
+                b.classList.remove('bg-orange-600', 'text-white', 'shadow');
+                b.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            document.getElementById('sub-materi-' + subId).classList.remove('hidden');
+            const activeSub = document.getElementById('sub-btn-' + subId);
+            activeSub.classList.remove('bg-slate-100', 'text-slate-700');
+            activeSub.classList.add('bg-orange-600', 'text-white', 'shadow');
+        }
+
+        // 4. Data & Interaksi Anatomi Kulit
+        const skinData = {
+            epidermis: {
+                badge: 'Lapisan 1',
+                title: 'Epidermis (Kulit Ari)',
+                desc: 'Epidermis adalah lapisan kulit paling luar yang tersusun atas sel-sel epitel pipih berlapis dan tidak memiliki pembuluh darah. Terdiri dari <strong>stratum korneum</strong> (lapisan tanduk berupa sel mati yang mudah mengelupas) dan <strong>stratum germinativum</strong> (lapisan yang aktif membelah dan mengandung pigmen <strong>melanin</strong> penentu warna kulit).',
+                func: 'Melindungi tubuh dari masuknya bakteri, gesekan fisik, kehilangan air berlebih, dan radiasi sinar UV.'
+            },
+            dermis: {
+                badge: 'Lapisan 2',
+                title: 'Dermis (Kulit Jangat)',
+                desc: 'Dermis terletak tepat di bawah epidermis dan jauh lebih tebal. Di dalam lapisan ini terdapat berbagai struktur penting seperti <strong>kelenjar keringat</strong>, <strong>kelenjar minyak</strong>, <strong>folikel rambut</strong>, <strong>pembuluh darah kapiler</strong>, serta <strong>ujung-ujung saraf peraba</strong>.',
+                func: 'Pusat pengaturan suhu tubuh (termoregulasi), produksi keringat dan minyak, serta indra peraba.'
+            },
+            hipodermis: {
+                badge: 'Lapisan 3',
+                title: 'Hipodermis (Jaringan Subkutan)',
+                desc: 'Hipodermis merupakan lapisan terdalam kulit yang menghubungkan kulit dengan otot atau tulang di bawahnya. Lapisan ini kaya akan <strong>jaringan lemak (adiposa)</strong> dan pembuluh darah besar.',
+                func: 'Menyimpan cadangan energi, menjaga kehangatan tubuh (isolator panas), dan melindungi organ dalam dari benturan.'
+            },
+            keringat: {
+                badge: 'Organ Ekskresi Kulit',
+                title: 'Kelenjar Keringat (Glandula Sudorifera)',
+                desc: 'Kelenjar keringat berbentuk pipa terpilin yang pangkalnya berada di lapisan dermis bagian dalam dan bermuara pada pori-pori di permukaan epidermis.',
+                func: 'Menyerap air, garam mineral (NaCl), dan sedikit urea dari kapiler darah lalu mengeluarkannya sebagai keringat.'
+            },
+            minyak: {
+                badge: 'Kelenjar Pelindung',
+                title: 'Kelenjar Minyak (Glandula Sebasea)',
+                desc: 'Kelenjar minyak terletak di samping folikel rambut pada lapisan dermis dan menghasilkan zat minyak alami yang disebut <strong>sebum</strong>.',
+                func: 'Meminyaki rambut dan permukaan kulit agar tetap lembap, lentur, serta tidak mudah kering atau pecah-pecah.'
+            }
+        };
+
+        function showSkinInfo(key) {
+            const data = skinData[key];
+            document.getElementById('skin-badge').textContent = data.badge;
+            document.getElementById('skin-title').textContent = data.title;
+            document.getElementById('skin-desc').innerHTML = data.desc;
+            document.getElementById('skin-func').textContent = data.func;
+        }
+
+        // 5. Laboratorium Virtual Termoregulasi Kulit
+        const skinLabStates = {
+            dingin: {
+                badge: 'Kondisi: Dingin (16°C)',
+                badgeClass: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
+                sweatRate: 'Sangat Sedikit',
+                sweatWidth: '10%',
+                dropsOpacity: '0',
+                vesselWidth: '3',
+                vesselStatus: 'Menyempit (Vasokonstriksi)',
+                urineRelation: 'Meningkat (Sering BAK)',
+                bodyTemp: '36,6 °C (Dipertahankan)',
+                explanation: 'Saat cuaca dingin, hipotalamus memerintahkan pembuluh darah di dermis menyempit (vasokonstriksi) agar panas tubuh tidak banyak keluar. Kelenjar keringat tidak aktif sehingga kelebihan air dibuang melalui ginjal (urine lebih banyak).'
+            },
+            normal: {
+                badge: 'Kondisi: Normal (27°C)',
+                badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+                sweatRate: 'Sedang (Normal)',
+                sweatWidth: '35%',
+                dropsOpacity: '0.4',
+                vesselWidth: '6',
+                vesselStatus: 'Diameter Normal',
+                urineRelation: 'Seimbang',
+                bodyTemp: '36,8 °C (Stabil)',
+                explanation: 'Pada suhu ruang 27°C, pembuluh darah dermis berada dalam ukuran normal dan kelenjar keringat memproduksi keringat dalam jumlah sedikit untuk menjaga keseimbangan cairan tubuh.'
+            },
+            panas: {
+                badge: 'Kondisi: Panas Terik (36°C)',
+                badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+                sweatRate: 'Banyak',
+                sweatWidth: '75%',
+                dropsOpacity: '0.85',
+                vesselWidth: '10',
+                vesselStatus: 'Melebar (Vasodilatasi)',
+                urineRelation: 'Berkurang & Pekat',
+                bodyTemp: '37,0 °C (Didinginkan)',
+                explanation: 'Saat terpapar panas terik, pembuluh darah dermis melebar (vasodilatasi) sehingga kulit tampak kemerahan dan panas dilepaskan. Kelenjar keringat aktif menyerap air dan garam dari darah untuk mendinginkan permukaan kulit.'
+            },
+            olahraga: {
+                badge: 'Kondisi: Olahraga Berat',
+                badgeClass: 'bg-rose-500/20 text-rose-300 border-rose-500/40',
+                sweatRate: 'Sangat Banyak (Maksimal)',
+                sweatWidth: '100%',
+                dropsOpacity: '1',
+                vesselWidth: '13',
+                vesselStatus: 'Melebar Maksimal',
+                urineRelation: 'Sangat Sedikit',
+                bodyTemp: '37,2 °C (Pendinginan Aktif)',
+                explanation: 'Pembakaran energi di otot menghasilkan panas tubuh berlebih. Hipotalamus memacu kelenjar keringat bekerja maksimal agar penguapan keringat menurunkan suhu tubuh kembali ke batas normal.'
+            }
+        };
+
+        function setSkinLab(cond) {
+            const info = skinLabStates[cond];
+
+            document.querySelectorAll('.skin-lab-btn').forEach(btn => {
+                btn.classList.remove('border-2', 'border-orange-600', 'bg-orange-50');
+                btn.classList.add('border', 'border-slate-200', 'bg-white');
+            });
+            const activeBtn = document.getElementById('skin-lab-' + cond);
+            activeBtn.classList.remove('border', 'border-slate-200', 'bg-white');
+            activeBtn.classList.add('border-2', 'border-orange-600', 'bg-orange-50');
+
+            const badge = document.getElementById('skin-lab-badge');
+            badge.textContent = info.badge;
+            badge.className = 'px-3 py-1 rounded-full text-xs font-bold border ' + info.badgeClass;
+
+            document.getElementById('sweat-rate-text').textContent = info.sweatRate;
+            document.getElementById('sweat-bar').style.width = info.sweatWidth;
+            document.getElementById('sweat-drops').setAttribute('opacity', info.dropsOpacity);
+            document.getElementById('blood-vessel-sim').setAttribute('stroke-width', info.vesselWidth);
+            document.getElementById('vessel-status').textContent = info.vesselStatus;
+            document.getElementById('urine-relation').textContent = info.urineRelation;
+            document.getElementById('body-temp-val').textContent = info.bodyTemp;
+            document.getElementById('skin-lab-explanation').textContent = info.explanation;
+        }
+
+        // 6. LKPD Digital
+        function periksaLKPD() {
+            const nama = document.getElementById('lkpd-nama').value.trim();
+            const kelas = document.getElementById('lkpd-kelas').value.trim();
+            const l1Nama = document.getElementById('lkpd-l1-nama').value;
+            const l1Fungsi = document.getElementById('lkpd-l1-fungsi').value;
+            const l2Nama = document.getElementById('lkpd-l2-nama').value;
+            const l2Fungsi = document.getElementById('lkpd-l2-fungsi').value;
+            const l3Nama = document.getElementById('lkpd-l3-nama').value;
+            const l3Fungsi = document.getElementById('lkpd-l3-fungsi').value;
+            const analisis = document.getElementById('lkpd-analisis').value.trim();
+
+            const resBox = document.getElementById('lkpd-result');
+            resBox.classList.remove('hidden', 'bg-rose-50', 'border-rose-200', 'bg-emerald-50', 'border-emerald-200');
+
+            if (!nama || !kelas || !l1Nama || !l1Fungsi || !l2Nama || !l2Fungsi || !l3Nama || !l3Fungsi || !analisis) {
+                resBox.classList.add('bg-rose-50', 'border-rose-200');
+                resBox.innerHTML = `<p class="font-bold text-rose-700"><i class="fa-solid fa-circle-exclamation mr-1"></i> Mohon lengkapi identitas dan seluruh kolom jawaban LKPD terlebih dahulu sebelum memeriksa!</p>`;
+                return;
+            }
+
+            let benar = 0;
+            if (l1Nama === 'Epidermis') benar++;
+            if (l1Fungsi === 'Melanin') benar++;
+            if (l2Nama === 'Dermis') benar++;
+            if (l2Fungsi === 'Kelenjar') benar++;
+            if (l3Nama === 'Hipodermis') benar++;
+            if (l3Fungsi === 'Lemak') benar++;
+
+            const skorTabel = Math.round((benar / 6) * 100);
+            resBox.classList.add('bg-emerald-50', 'border-emerald-200');
+            resBox.innerHTML = `
+                <div class="space-y-2 text-slate-800">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-emerald-800 text-lg"><i class="fa-solid fa-clipboard-check mr-1"></i> Rekap Hasil LKPD Digital</h4>
+                        <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">Skor Tabel: ${skorTabel}/100</span>
+                    </div>
+                    <p class="text-sm"><strong>Nama/Kelompok:</strong> ${nama} (${kelas})</p>
+                    <p class="text-sm"><strong>Ketepatan Tabel:</strong> ${benar} dari 6 kolom benar.</p>
+                    <div class="bg-white p-3 rounded-xl border border-emerald-200 text-xs text-slate-700 mt-2">
+                        <p class="font-bold text-emerald-700 mb-1">Kunci Pembahasan Studi Kasus (Bagian B):</p>
+                        <p>Kulit dan ginjal bekerja sama menjaga keseimbangan cairan tubuh (osmoregulasi). Saat panas/olahraga, banyak air dikeluarkan melalui <strong>keringat</strong> untuk mendinginkan tubuh sehingga volume <strong>urine</strong> sedikit. Sebaliknya, saat suhu dingin, pengeluaran keringat sangat sedikit sehingga kelebihan air dikeluarkan melalui <strong>ginjal dalam bentuk urine</strong>.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetLKPD() {
+            document.getElementById('lkpd-nama').value = '';
+            document.getElementById('lkpd-kelas').value = '';
+            document.getElementById('lkpd-l1-nama').value = '';
+            document.getElementById('lkpd-l1-fungsi').value = '';
+            document.getElementById('lkpd-l2-nama').value = '';
+            document.getElementById('lkpd-l2-fungsi').value = '';
+            document.getElementById('lkpd-l3-nama').value = '';
+            document.getElementById('lkpd-l3-fungsi').value = '';
+            document.getElementById('lkpd-analisis').value = '';
+            document.getElementById('lkpd-result').classList.add('hidden');
+        }
+
+        // 7. Quiz Interaktif
+        const quizQuestions = [
+            {
+                q: "1. Kelenjar keringat (glandula sudorifera), kelenjar minyak, dan pembuluh darah kapiler terletak pada lapisan kulit bagian...",
+                options: ["Epidermis (kulit ari)", "Dermis (kulit jangat)", "Hipodermis (subkutan)", "Stratum korneum"],
+                answer: 1,
+                explanation: "Lapisan dermis (kulit jangat) mengandung kelenjar keringat, kelenjar minyak, folikel rambut, ujung saraf, dan pembuluh darah."
+            },
+            {
+                q: "2. Zat sisa metabolisme yang diekskresikan oleh kulit melalui keringat selain air dan garam mineral (NaCl) adalah...",
+                options: ["Bilirubin", "Karbon dioksida", "Urea", "Glukosa"],
+                answer: 2,
+                explanation: "Keringat mengandung sekitar 99% air serta 1% zat terlarut berupa garam mineral (NaCl) dan sedikit urea."
+            },
+            {
+                q: "3. Bagian otak yang berperan mendeteksi perubahan suhu darah dan mengatur aktivitas kelenjar keringat di kulit adalah...",
+                options: ["Serebelum", "Medula oblongata", "Hipotalamus", "Serebrum"],
+                answer: 2,
+                explanation: "Hipotalamus merupakan pusat pengatur suhu tubuh (termoregulasi) yang mengirimkan sinyal ke pembuluh darah dan kelenjar keringat."
+            },
+            {
+                q: "4. Pigmen melanin yang berfungsi melindungi kulit dari bahaya radiasi sinar ultraviolet (UV) matahari terdapat pada lapisan...",
+                options: ["Epidermis", "Dermis", "Hipodermis", "Jaringan adiposa"],
+                answer: 0,
+                explanation: "Pigmen melanin dihasilkan oleh sel melanosit di lapisan dasar epidermis (stratum germinativum)."
+            },
+            {
+                q: "5. Kelainan kulit berupa bintik-bintik merah dan rasa gatal akibat tersumbatnya saluran atau pori-pori kelenjar keringat disebut...",
+                options: ["Jerawat", "Biang keringat (miliaria)", "Panu", "Albuminuria"],
+                answer: 1,
+                explanation: "Biang keringat terjadi ketika saluran kelenjar keringat tersumbat oleh sel-sel kulit mati atau kotoran sehingga keringat terperangkap di bawah kulit."
+            }
+        ];
+
+        let currentQIndex = 0;
+        let quizScore = 0;
+        let answeredCurrent = false;
+
+        function loadQuestion() {
+            answeredCurrent = false;
+            const qObj = quizQuestions[currentQIndex];
+            document.getElementById('quiz-progress-badge').textContent = `Soal ${currentQIndex + 1} / ${quizQuestions.length}`;
+            document.getElementById('quiz-question').textContent = qObj.q;
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            const optionsDiv = document.getElementById('quiz-options');
+            optionsDiv.innerHTML = '';
+
+            qObj.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-opt-btn w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-orange-400 hover:bg-orange-50 font-semibold text-sm sm:text-base text-slate-700 transition flex items-center gap-3';
+                const letters = ['A', 'B', 'C', 'D'];
+                btn.innerHTML = `<span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 font-bold flex items-center justify-center shrink-0">${letters[idx]}</span> <span>${opt}</span>`;
+                btn.onclick = () => selectQuizAnswer(idx, btn);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function selectQuizAnswer(selectedIndex, btnEl) {
+            if (answeredCurrent) return;
+            answeredCurrent = true;
+
+            const qObj = quizQuestions[currentQIndex];
+            const allBtns = document.querySelectorAll('.quiz-opt-btn');
+            const fb = document.getElementById('quiz-feedback');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-rose-100', 'text-rose-900');
+
+            if (selectedIndex === qObj.answer) {
+                quizScore += 20;
+                btnEl.classList.remove('border-slate-200');
+                btnEl.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                fb.classList.add('bg-emerald-100', 'text-emerald-900');
+                fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> <strong>Benar!</strong> ${qObj.explanation}`;
+            } else {
+                btnEl.classList.remove('border-slate-200');
+                btnEl.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+                allBtns[qObj.answer].classList.remove('border-slate-200');
+                allBtns[qObj.answer].classList.add('border-emerald-500', 'bg-emerald-50');
+                fb.classList.add('bg-rose-100', 'text-rose-900');
+                fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> <strong>Kurang Tepat.</strong> ${qObj.explanation}`;
+            }
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.classList.remove('hidden');
+            nextBtn.innerHTML = currentQIndex === quizQuestions.length - 1 
+                ? 'Lihat Skor Akhir <i class="fa-solid fa-flag-checkered"></i>' 
+                : 'Soal Berikutnya <i class="fa-solid fa-arrow-right"></i>';
+        }
+
+        function nextQuestion() {
+            currentQIndex++;
+            if (currentQIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('quiz-progress-badge').classList.add('hidden');
+                const scoreDiv = document.getElementById('quiz-score-container');
+                scoreDiv.classList.remove('hidden');
+                document.getElementById('quiz-final-score').textContent = quizScore;
+
+                let msg = '';
+                if (quizScore === 100) msg = 'Luar biasa! Kamu menguasai materi Sistem Ekskresi (Kulit) dengan sempurna!';
+                else if (quizScore >= 80) msg = 'Hebat! Pemahamanmu sudah sangat baik. Pertahankan prestasimu!';
+                else if (quizScore >= 60) msg = 'Cukup baik! Pelajari kembali bagian yang masih keliru pada tab Materi Interaktif.';
+                else msg = 'Tetap semangat! Yuk baca kembali Materi Interaktif dan coba Lab Virtual sebelum mengulang quiz.';
+                document.getElementById('quiz-final-msg').textContent = msg;
+            }
+        }
+
+        function restartQuiz() {
+            currentQIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-score-container').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('quiz-progress-badge').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Inisialisasi Quiz saat halaman dimuat
+        window.onload = function() {
+            loadQuestion();
+        };
+    </script>
+</body>
+</html>
